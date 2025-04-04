@@ -1,0 +1,18 @@
+{
+  "filename": "order_10519.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Ro 2 xO S& & R SAV d 2 & & & & NO Ss aN & 3 SPs",
+    "to_organization": "S ey S",
+    "file_path": "data 2/Shipping orders/order_10519.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "filename": "purchase_orders_10687.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "evs C & or",
+    "to_organization": "RX",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10687.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

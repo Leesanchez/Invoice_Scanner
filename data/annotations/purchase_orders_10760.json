@@ -1,0 +1,21 @@
+{
+  "filename": "purchase_orders_10760.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "Catherine Dewey 0760 Products Unit Price",
+    "to_organization": "Coffee 43",
+    "total_amount": "43",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10760.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "total_amount": 0.5
+    }
+  }
+}

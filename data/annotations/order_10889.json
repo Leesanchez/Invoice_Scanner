@@ -1,0 +1,18 @@
+{
+  "filename": "order_10889.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Cy SS Ss & ~ x\\ & g& eS",
+    "to_organization": "SSN & e Ss @ \u00a9 RS",
+    "file_path": "data 2/Shipping orders/order_10889.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "filename": "purchase_orders_10596.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "ID Gnocc",
+    "to_organization": "Klosterbier",
+    "total_amount": "1",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10596.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "total_amount": 0.5
+    }
+  }
+}

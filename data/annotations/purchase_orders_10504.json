@@ -1,0 +1,21 @@
+{
+  "filename": "purchase_orders_10504.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "Ssatamashn",
+    "to_organization": "Sirop d'\u00e9rable",
+    "total_amount": "28.5",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10504.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "total_amount": 0.5
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "filename": "order_10447.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Ricardo Adocicados Ship Address",
+    "to_organization": "Ricardo Adocicados Employee Details",
+    "addresses": [
+      "Ship City"
+    ],
+    "file_path": "data 2/Shipping orders/order_10447.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "addresses": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "addresses": 0.6
+    }
+  }
+}

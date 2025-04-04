@@ -1,0 +1,18 @@
+{
+  "filename": "order_10612.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Le & &S YH Ss @ & w",
+    "to_organization": "cP \\2 w & xO",
+    "file_path": "data 2/Shipping orders/order_10612.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

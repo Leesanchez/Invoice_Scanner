@@ -1,0 +1,18 @@
+{
+  "filename": "purchase_orders_10418.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "po_number": "sse",
+    "total_amount": "74",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10418.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "po_number": "regex",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "po_number": 0.9,
+      "total_amount": 0.5
+    }
+  }
+}

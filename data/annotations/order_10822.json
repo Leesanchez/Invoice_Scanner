@@ -1,0 +1,18 @@
+{
+  "filename": "order_10822.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "NO Ss & eo & Ve Ss @ & Kae SS 2",
+    "to_organization": "Oo & sO xO",
+    "file_path": "data 2/Shipping orders/order_10822.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

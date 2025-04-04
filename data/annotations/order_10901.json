@@ -1,0 +1,17 @@
+{
+  "filename": "order_10901.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "addresses": [
+      "Av City :"
+    ],
+    "file_path": "data 2/Shipping orders/order_10901.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "addresses": "spacy"
+    },
+    "confidence_scores": {
+      "addresses": 0.6
+    }
+  }
+}

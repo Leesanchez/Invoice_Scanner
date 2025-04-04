@@ -1,0 +1,18 @@
+{
+  "filename": "order_10545.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "LO & NAR No & ee Ss & Ss Se Kae 2 Oo & Or CP Se \\2 Re",
+    "to_organization": "NS S red gn SS S",
+    "file_path": "data 2/Shipping orders/order_10545.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

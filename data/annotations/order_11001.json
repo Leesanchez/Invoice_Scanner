@@ -1,0 +1,18 @@
+{
+  "filename": "order_11001.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Po xO",
+    "to_organization": "NO\" & xO",
+    "file_path": "data 2/Shipping orders/order_11001.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

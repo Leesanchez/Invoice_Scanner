@@ -1,0 +1,21 @@
+{
+  "filename": "purchase_orders_10778.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "Purchase Orders Customer Name Order Date 2017-",
+    "to_organization": "Christina Berglund 0778 Products Unit",
+    "total_amount": "1",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10778.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "total_amount": 0.5
+    }
+  }
+}

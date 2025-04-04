@@ -1,0 +1,18 @@
+{
+  "filename": "order_11063.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "e & ros XO Ww",
+    "to_organization": "RN RS xO & SS Xe xo",
+    "file_path": "data 2/Shipping orders/order_11063.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

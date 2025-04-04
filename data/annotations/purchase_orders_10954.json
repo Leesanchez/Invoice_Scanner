@@ -1,0 +1,21 @@
+{
+  "filename": "purchase_orders_10954.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "from_organization": "Purchase Orders Customer Name Order Date 2018-03-17",
+    "to_organization": "Felipe Izquierdo 0954 Products Unit Price",
+    "total_amount": "60",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10954.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "total_amount": 0.5
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "filename": "order_10747.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "rN iY\u201d & NS",
+    "to_organization": "QD \u00a3 & .O",
+    "file_path": "data 2/Shipping orders/order_10747.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

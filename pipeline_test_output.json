@@ -1,0 +1,112 @@
+{
+  "document_info": {
+    "filename": "invoice_10248.pdf",
+    "page_count": 1,
+    "tables_found": 2
+  },
+  "native_text_extraction": {
+    "text": "Invoice\nOrder ID: 10248\nCustomer ID: VINET\nOrder Date: 2016-07-04\nCustomer Details:\nContact Name: Paul Henriot\nAddress: 59 rue de l'Abbaye\nCity: Reims\nPostal Code: 51100\nCountry: France\nPhone: 26.47.15.10\nFax: 26.47.15.11\nProduct Details:\nProduct ID Product Name Quantity Unit Price\n11 Queso Cabrales 12 14.0\n42 Singaporean Hokkien Fried Mee 10 9.8\n72 Mozzarella di Giovanni 5 34.8\nTotalPrice 440.0\nPage 1",
+    "extracted_fields": {
+      "invoice_number": {
+        "value": "10248",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "customer_id": {
+        "value": "VINET",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "order_date": {
+        "value": "2016-07-04",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "customer_name": {
+        "value": "Paul Henriot",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "total_amount": {
+        "value": "440.0",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "shipping_address": {
+        "value": "59 rue de l'Abbaye, Reims, 51100, France",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "contact_info": {
+        "value": "Phone: 26.47.15.10, Fax: 26.47.15.11",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "from_organization": {
+        "value": "Invoice\nOrder ID",
+        "confidence": 0.7,
+        "method": "spacy"
+      },
+      "to_organization": {
+        "value": "Singaporean Hokkien",
+        "confidence": 0.7,
+        "method": "spacy"
+      },
+      "amount": {
+        "value": "72",
+        "confidence": 0.5,
+        "method": "position"
+      }
+    }
+  },
+  "ocr_extraction": {
+    "text": "Invoice Order ID: 10248 Customer ID: VINET Order Date: 2016-07-04 Customer Details: Contact Name: Paul Henriot Address: 59 rue de l'Abbaye Reims City: Postal Code: 51100 France Country: Phone: 26.47.15.10 Fax: 26.47.15.11 Product Details: Unit Price Product Name Quantity Product ID 12 14.0 11 Queso Cabrales 10 9.8 42 Singaporean Hokkien Fried Mee 34.8 Mozzarella di Giovanni 5 72 TotalPrice 440.0 Page 1",
+    "extracted_fields": {
+      "invoice_number": {
+        "value": "10248",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "customer_id": {
+        "value": "VINET",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "order_date": {
+        "value": "2016-07-04",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "customer_name": {
+        "value": "Paul Henriot Address: 59 rue de l'Abbaye Reims City: Postal Code: 51100 France Country: Phone: 26.47.15.10 Fax: 26.47.15.11 Product Details: Unit Price Product Name Quantity Product ID 12 14.0 11 Queso Cabrales 10 9.8 42 Singaporean Hokkien Fried Mee 34.8 Mozzarella di Giovanni 5 72 TotalPrice 440.0 Page 1",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "total_amount": {
+        "value": "440.0",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "contact_info": {
+        "value": "Phone: 26.47.15.10, Fax: 26.47.15.11 Product Details: Unit Price Product Name Quantity Product ID 12 14.0 11 Queso Cabrales 10 9.8 42 Singaporean Hokkien Fried Mee 34.8 Mozzarella di Giovanni 5 72 TotalPrice 440.0 Page 1",
+        "confidence": 0.9,
+        "method": "regex"
+      },
+      "from_organization": {
+        "value": "Invoice Order ID",
+        "confidence": 0.7,
+        "method": "spacy"
+      },
+      "to_organization": {
+        "value": "VINET Order Date",
+        "confidence": 0.7,
+        "method": "spacy"
+      },
+      "amount": {
+        "value": "72",
+        "confidence": 0.5,
+        "method": "position"
+      }
+    }
+  }
+}

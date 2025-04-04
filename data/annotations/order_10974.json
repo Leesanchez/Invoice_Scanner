@@ -1,0 +1,18 @@
+{
+  "filename": "order_10974.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "OL Ss & SX Kae",
+    "to_organization": "CP SS & SS xO",
+    "file_path": "data 2/Shipping orders/order_10974.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "filename": "order_10725.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Oe e& yo",
+    "to_organization": "ex c& QQ 7 yo \u2018 en + - \u2018",
+    "file_path": "data 2/Shipping orders/order_10725.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

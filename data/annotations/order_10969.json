@@ -1,0 +1,18 @@
+{
+  "filename": "order_10969.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "SS ge xO",
+    "to_organization": "xO x",
+    "file_path": "data 2/Shipping orders/order_10969.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

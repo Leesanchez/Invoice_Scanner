@@ -1,0 +1,17 @@
+{
+  "filename": "order_10914.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "addresses": [
+      "South America Ship Region"
+    ],
+    "file_path": "data 2/Shipping orders/order_10914.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "addresses": "spacy"
+    },
+    "confidence_scores": {
+      "addresses": 0.6
+    }
+  }
+}

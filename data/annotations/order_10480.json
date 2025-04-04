@@ -1,0 +1,18 @@
+{
+  "filename": "order_10480.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Ky &",
+    "to_organization": "XO Se ros S Sa Ss S& & \u00a9 Cae SP Ss @ NG",
+    "file_path": "data 2/Shipping orders/order_10480.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

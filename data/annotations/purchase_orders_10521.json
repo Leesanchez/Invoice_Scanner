@@ -1,0 +1,15 @@
+{
+  "filename": "purchase_orders_10521.pdf",
+  "category": "PurchaseOrders",
+  "fields": {
+    "total_amount": "12.5",
+    "file_path": "data 2/PurchaseOrders/purchase_orders_10521.pdf",
+    "category": "PurchaseOrders",
+    "extraction_methods": {
+      "total_amount": "position"
+    },
+    "confidence_scores": {
+      "total_amount": 0.5
+    }
+  }
+}
