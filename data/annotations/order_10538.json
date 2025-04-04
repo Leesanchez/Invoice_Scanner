@@ -1,0 +1,18 @@
+{
+  "filename": "order_10538.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "BS we & oY Ss S ta Ss & \u00a9 2 & Ss @ Ss",
+    "to_organization": "Oo & sO xO s SS",
+    "file_path": "data 2/Shipping orders/order_10538.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

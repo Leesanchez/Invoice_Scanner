@@ -1,0 +1,18 @@
+{
+  "filename": "order_11035.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "FS Cr red \u00a9 oS SS & Ny S",
+    "to_organization": "No we & s xO \u201c> o & xO",
+    "file_path": "data 2/Shipping orders/order_11035.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "filename": "order_11022.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "Carnes Ship Address",
+    "to_organization": "Hanari Carnes Employee Details",
+    "file_path": "data 2/Shipping orders/order_11022.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7
+    }
+  }
+}

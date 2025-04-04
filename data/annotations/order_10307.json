@@ -1,0 +1,23 @@
+{
+  "filename": "order_10307.pdf",
+  "category": "Shipping orders",
+  "fields": {
+    "from_organization": "SS S & Re Se xO",
+    "to_organization": "Nd \u2018S SF Ww o xO & Xe se Go xO",
+    "addresses": [
+      "OW KZ"
+    ],
+    "file_path": "data 2/Shipping orders/order_10307.pdf",
+    "category": "Shipping orders",
+    "extraction_methods": {
+      "from_organization": "spacy",
+      "to_organization": "spacy",
+      "addresses": "spacy"
+    },
+    "confidence_scores": {
+      "from_organization": 0.7,
+      "to_organization": 0.7,
+      "addresses": 0.6
+    }
+  }
+}
