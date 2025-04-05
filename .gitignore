@@ -4,33 +4,42 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual Environment
+.env
+.venv
+env/
 venv/
 ENV/
-env/
-.env
+
+# Data and models
+data 2/
+data_test/
+backup/
+*.log
+*.pkl
+models/
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
-*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+catboost_info/
+*.tmp
+
+# Virtual Environment
+.installed.cfg
+*.egg-info/
+*.egg
 
 # Project specific
 *.pdf
@@ -39,5 +48,4 @@ invoice_report.html
 test_output.json
 
 # OS specific
-.DS_Store
-Thumbs.db 
+extraction_view.log
