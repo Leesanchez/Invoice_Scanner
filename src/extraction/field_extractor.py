@@ -7,6 +7,8 @@ import logging
 from pathlib import Path
 import json
 from datetime import datetime
+import numpy as np
+from PIL import Image
 
 @dataclass
 class ExtractedField:
@@ -17,7 +19,7 @@ class ExtractedField:
 
 class FieldExtractor:
     def __init__(self):
-        """Initialize the field extractor with necessary components."""
+        """Initialize the field extractor with improved components."""
         # Load spaCy model for NER
         try:
             self.nlp = spacy.load("en_core_web_sm")
@@ -27,30 +29,34 @@ class FieldExtractor:
             subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
         self.nlp = spacy.load("en_core_web_sm")
         
-        # Initialize regex patterns
+        # Enhanced regex patterns
         self.patterns = {
-                'invoice_number': [
-                r'(?i)invoice\s*#?\s*[:.]?\s*([A-Z0-9][-A-Z0-9]*)',
+            'invoice_number': [
+                r'(?i)(?:invoice|inv)[\s#:]*([A-Z0-9][-A-Z0-9]*)',
                 r'(?i)invoice\s*number\s*[:.]?\s*([A-Z0-9][-A-Z0-9]*)',
-                r'(?i)inv\s*#?\s*[:.]?\s*([A-Z0-9][-A-Z0-9]*)'
+                r'(?i)order\s*number\s*[:.]?\s*([A-Z0-9][-A-Z0-9]*)',
+                r'(?i)ref\s*[:.]?\s*([A-Z0-9][-A-Z0-9]*)'
             ],
             'date': [
-                r'(?i)date\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
-                r'(?i)invoice\s*date\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
-                r'(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})'
+                r'(?i)(?:date|invoice\s*date)\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
+                r'(?i)(?:date|invoice\s*date)\s*[:.]?\s*(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
+                r'(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
+                r'(\d{4}[-/]\d{1,2}[-/]\d{1,2})'
             ],
             'due_date': [
-                r'(?i)due\s*date\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
-                r'(?i)payment\s*due\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})'
-                ],
-                'total_amount': [
-                r'(?i)total\s*amount\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)',
-                    r'(?i)total\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)',
-                r'(?i)amount\s*due\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)'
+                r'(?i)(?:due\s*date|payment\s*due)\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
+                r'(?i)(?:due\s*date|payment\s*due)\s*[:.]?\s*(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
+                r'(?i)net\s*[:.]?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})'
+            ],
+            'total_amount': [
+                r'(?i)(?:total|amount|balance\s*due)\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)',
+                r'(?i)grand\s*total\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)',
+                r'(?i)amount\s*due\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)',
+                r'(?i)total\s*payable\s*[:.]?\s*[\$£€]?\s*([\d,]+\.?\d*)'
             ]
         }
         
-        # Load field position heuristics
+        # Improved position heuristics
         self.load_position_heuristics()
         
         # Setup logging
@@ -58,48 +64,123 @@ class FieldExtractor:
         self.logger = logging.getLogger(__name__)
     
     def load_position_heuristics(self):
-        """Load position heuristics for field locations."""
+        """Load improved position heuristics for field locations."""
         self.position_heuristics = {
-            'invoice_number': {'top': 0.1, 'right': 0.3},  # Usually top-right
-            'date': {'top': 0.1, 'right': 0.9},  # Usually top-right
-            'due_date': {'top': 0.2, 'right': 0.9},  # Usually below date
-            'total_amount': {'bottom': 0.9, 'right': 0.9},  # Usually bottom-right
-            'issuer_name': {'top': 0.1, 'left': 0.1},  # Usually top-left
-            'recipient_name': {'top': 0.3, 'left': 0.1}  # Usually middle-left
+            'invoice_number': {
+                'top': 0.1,
+                'right': 0.3,
+                'weight': 0.8
+            },
+            'date': {
+                'top': 0.1,
+                'right': 0.9,
+                'weight': 0.8
+            },
+            'due_date': {
+                'top': 0.2,
+                'right': 0.9,
+                'weight': 0.7
+            },
+            'total_amount': {
+                'bottom': 0.9,
+                'right': 0.9,
+                'weight': 0.9
+            },
+            'issuer_name': {
+                'top': 0.1,
+                'left': 0.1,
+                'weight': 0.7
+            },
+            'recipient_name': {
+                'top': 0.3,
+                'left': 0.1,
+                'weight': 0.7
+            }
         }
     
+    def validate_date(self, date_str: str) -> bool:
+        """Validate date format."""
+        try:
+            parsed_date = dateparser.parse(date_str)
+            return parsed_date is not None
+        except:
+            return False
+    
+    def validate_amount(self, amount_str: str) -> bool:
+        """Validate amount format."""
+        try:
+            # Remove currency symbols and commas
+            clean_amount = re.sub(r'[^\d.]', '', amount_str)
+            float(clean_amount)
+            return True
+        except:
+            return False
+    
     def extract_with_regex(self, text: str, field_type: str) -> Optional[ExtractedField]:
-        """Extract field using regex patterns."""
+        """Extract field using enhanced regex patterns."""
         patterns = self.patterns.get(field_type, [])
+        best_match = None
+        best_confidence = 0
+        
         for pattern in patterns:
             matches = re.finditer(pattern, text)
             for match in matches:
                 value = match.group(1).strip()
-                # Basic validation
-                if field_type == 'total_amount':
-                    try:
-                        float(value.replace(',', ''))
-                    except ValueError:
+                
+                # Validate based on field type
+                if field_type in ['date', 'due_date']:
+                    if not self.validate_date(value):
                         continue
-                return ExtractedField(
-                    value=value,
-                    confidence=0.8,  # Base confidence for regex matches
-                    method='regex'
-                )
-        return None
+                elif field_type == 'total_amount':
+                    if not self.validate_amount(value):
+                        continue
+                
+                # Calculate confidence based on pattern match
+                confidence = 0.8
+                if 'invoice' in pattern.lower():
+                    confidence += 0.1
+                if 'number' in pattern.lower():
+                    confidence += 0.1
+                
+                if confidence > best_confidence:
+                    best_confidence = confidence
+                    best_match = ExtractedField(
+                        value=value,
+                        confidence=confidence,
+                        method='regex'
+                    )
+        
+        return best_match
     
     def extract_with_ner(self, text: str) -> Dict[str, ExtractedField]:
-        """Extract entities using spaCy NER."""
+        """Extract entities using enhanced spaCy NER."""
         doc = self.nlp(text)
         entities = {}
+        
+        # Track positions of entities
+        positions = []
+        for ent in doc.ents:
+            if ent.label_ == 'ORG':
+                positions.append((ent.start_char, ent.end_char))
+        
+        # Sort entities by position
+        positions.sort()
         
         for ent in doc.ents:
             if ent.label_ == 'ORG':
                 # Determine if organization is issuer or recipient based on position
                 # and context
                 context_before = doc[max(0, ent.start - 5):ent.start].text.lower()
+                context_after = doc[ent.end:min(ent.end + 5, len(doc))].text.lower()
+                
                 is_issuer = any(word in context_before 
                               for word in ['from', 'issued', 'by', 'sender'])
+                is_recipient = any(word in context_before 
+                                 for word in ['to', 'bill to', 'ship to'])
+                
+                # If context is unclear, use position
+                if not is_issuer and not is_recipient:
+                    is_issuer = positions.index((ent.start_char, ent.end_char)) == 0
                 
                 field_type = 'issuer_name' if is_issuer else 'recipient_name'
                 
@@ -107,8 +188,7 @@ class FieldExtractor:
                    len(ent.text) > len(entities[field_type].value):
                     entities[field_type] = ExtractedField(
                         value=ent.text,
-                        confidence=ent._.confidence 
-                            if hasattr(ent._, 'confidence') else 0.7,
+                        confidence=0.7 + (0.2 if is_issuer or is_recipient else 0),
                         method='ner'
                     )
         
@@ -120,7 +200,7 @@ class FieldExtractor:
         boxes: List[Dict[str, float]],
         field_type: str
     ) -> Optional[ExtractedField]:
-        """Extract field using positional heuristics."""
+        """Extract field using improved positional heuristics."""
         heuristic = self.position_heuristics.get(field_type)
         if not heuristic or not boxes:
             return None
@@ -149,6 +229,9 @@ class FieldExtractor:
                 elif pos == 'right':
                     score *= 1 - abs((x_norm + box['width']/max_x) - target)
             
+            # Apply weight
+            score *= heuristic.get('weight', 1.0)
+            
             if score > best_score:
                 best_score = score
                 best_match = ExtractedField(
@@ -164,15 +247,17 @@ class FieldExtractor:
         self,
         text: str,
         boxes: List[Dict[str, float]],
-        document_type: str
+        document_type: str,
+        image: Optional[Image.Image] = None
     ) -> Dict[str, ExtractedField]:
         """
-        Extract all fields from the document using multiple methods.
+        Extract fields using multiple methods.
         
         Args:
             text: Document text
             boxes: List of bounding boxes from OCR
             document_type: Type of document (e.g., 'Invoices')
+            image: Optional PIL Image (not used)
             
         Returns:
             Dictionary of extracted fields
@@ -183,36 +268,27 @@ class FieldExtractor:
         self.logger.info("Extracting fields from invoice...")
         fields = {}
         
-        # 1. Extract using regex
+        # 1. Extract using regex for all fields
         for field_type in self.patterns.keys():
             result = self.extract_with_regex(text, field_type)
             if result:
                 fields[field_type] = result
                 self.logger.info(f"Found {field_type} using regex: {result.value}")
         
-        # 2. Extract using NER
+        # 2. Extract using NER for missing fields
         ner_results = self.extract_with_ner(text)
-        fields.update(ner_results)
         for field_type, result in ner_results.items():
-            self.logger.info(f"Found {field_type} using NER: {result.value}")
+            if field_type not in fields:
+                fields[field_type] = result
+                self.logger.info(f"Found {field_type} using NER: {result.value}")
         
-        # 3. Extract using position for missing fields
+        # 3. Try position-based extraction for any remaining fields
         for field_type in self.position_heuristics.keys():
             if field_type not in fields:
                 result = self.extract_with_position(text, boxes, field_type)
                 if result:
                     fields[field_type] = result
-                    self.logger.info(
-                        f"Found {field_type} using position: {result.value}"
-                    )
-        
-        # Log extraction summary
-        self.logger.info("\nExtraction Summary:")
-        for field_type, result in fields.items():
-            self.logger.info(
-                f"{field_type}: {result.value} "
-                f"(confidence: {result.confidence:.2f}, method: {result.method})"
-            )
+                    self.logger.info(f"Found {field_type} using position: {result.value}")
         
         return fields
 

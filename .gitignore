@@ -9,14 +9,7 @@ __pycache__/
 env/
 venv/
 ENV/
-
-# Data and models
-data 2/
-data_test/
-backup/
-*.log
-*.pkl
-models/
+.pytest_cache/
 
 # IDE
 .vscode/
@@ -42,10 +35,18 @@ catboost_info/
 *.egg
 
 # Project specific
-*.pdf
 invoice_results.json
 invoice_report.html
 test_output.json
 
 # OS specific
 extraction_view.log
+
+# Exclude document files
+docs/raw/**/*.pdf
+docs/raw/**/*.PDF
+
+# Exclude data directories (be specific about top-level data only)
+/data/
+/docs/raw/
+/docs/processed/
