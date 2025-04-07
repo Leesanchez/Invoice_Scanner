@@ -1,0 +1,35 @@
+name: Deploy Docusaurus Site
+
+on:
+  push:
+    branches:
+      - dev-aswin  # Trigger the workflow on pushes to the dev-aswin branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # or your preferred Node.js version
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: docs-site
+
+      - name: Build Docusaurus Site
+        run: npm run build
+        working-directory: docs-site
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs-site/build
+          # Optionally, if your site uses a custom domain, you can add:
+          # cname: your.custom.domain.com
